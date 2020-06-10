@@ -78,6 +78,9 @@
       }
     });
 
+    console.log("affil", Rewardful.affiliate);
+    console.log("coupo", Rewardful.coupon);
+
     const response = await fetch("/.netlify/functions/stripe-charge", {
       method: "POST",
       headers: {
