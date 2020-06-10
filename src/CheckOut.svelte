@@ -39,7 +39,7 @@
       type: "card",
       card: cardElement,
       billing_details: {
-        email: "jenny.rosen@example.com"
+        email: "mealime@example.com"
       }
     });
 
