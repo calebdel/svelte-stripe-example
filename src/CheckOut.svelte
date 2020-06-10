@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  var stripe = Stripe("pk_test_VWv39DvghCJYi3z1LOpdRtte00OxSyiu8j");
+  var stripe = Stripe("pk_live_m4VIY9Wed7VnX69kkQBdYPQW");
   var elements = stripe.elements();
 
   var style = {
@@ -21,6 +21,13 @@
   };
 
   let cardElement;
+
+  const initializeRewardful = () => {
+    window.addEventListener("Rewardful.tracked", () => {
+      console.log("Rewardful has finished loading");
+      // `Rewardful.referral` and `Rewardful.affiliate` are now available.
+    });
+  };
 
   onMount(async () => {
     cardElement = elements.create("card", { style: style });
@@ -46,9 +53,11 @@
       body: JSON.stringify({
         email: "jenny.rosen@example.com",
         payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.affiliate
+        referral: Rewardful.affiliate,
+        coupon: Rewardful.coupon
       })
     });
+    console.log(Rewardful.affiliate);
 
     return await response.json();
   }
@@ -90,6 +99,11 @@
   }
 </style>
 
+<svelte:head>
+  <script src="https://r.wdfl.co/rw.js" on:load={initializeRewardful}>
+
+  </script>
+</svelte:head>
 <div id="card-element" class="MyCardElement">
   <!-- Elements will create input elements here -->
 </div>
