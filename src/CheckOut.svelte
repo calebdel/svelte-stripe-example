@@ -22,14 +22,49 @@
 
   let cardElement;
 
-  const initializeRewardful = () => {
-    window.addEventListener("Rewardful.tracked", () => {
-      console.log("Rewardful has finished loading");
-      // `Rewardful.referral` and `Rewardful.affiliate` are now available.
-    });
-  };
+  let rewardfulReady = false;
+  let mounted = false;
+
+  // function stripeLoaded() {
+  //     // The external Stripe javascript is ready.
+  //     rewardfulReady = true;
+  //     if (mounted) {
+  //         loadStripeElements();
+  //     }
+  // }
+
+  function loadRewardful() {
+    // Time for Stripe.js to do its magic.
+    const rwdful = Rewardful;
+    console.log(rwdful);
+    // etc..
+  }
+
+  // const initializeRewardful = () => {
+  //   window.addEventListener("Rewardful.tracked", () => {
+  //     console.log("Rewardful has finished loading");
+  //     console.log("rewardful", Rewardful);
+  //     console.log(Rewardful.referral);
+  //     console.log(Rewardful.coupon);
+
+  //     // `Rewardful.referral` and `Rewardful.affiliate` are now available.
+  //   });
+  // };
+
+  function rewardfulLoaded() {
+    // The external Stripe javascript is ready.
+    rewardfulReady = true;
+    if (mounted) {
+      loadRewardful();
+    }
+  }
 
   onMount(async () => {
+    mounted = true;
+    if (rewardfulReady) {
+      loadRewardful();
+    }
+
     cardElement = elements.create("card", { style: style });
     cardElement.mount("#card-element");
   });
@@ -53,11 +88,18 @@
       body: JSON.stringify({
         email: "jenny.rosen@example.com",
         payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.affiliate,
-        coupon: Rewardful.coupon
+        referral: rwdful.affiliate,
+        coupon: rwdful.coupon
       })
+    }).then(function(response) {
+      if (!response.ok) {
+        return response
+          .text()
+          .then(result => Promise.reject(new Error(result)));
+      }
+
+      return response.json();
     });
-    console.log(Rewardful.affiliate);
 
     return await response.json();
   }
@@ -100,7 +142,10 @@
 </style>
 
 <svelte:head>
-  <script src="https://r.wdfl.co/rw.js" on:load={initializeRewardful}>
+  <script
+    data-rewardful="2ad021"
+    src="https://r.wdfl.co/rw.js"
+    on:load={rewardfulLoaded}>
 
   </script>
 </svelte:head>
