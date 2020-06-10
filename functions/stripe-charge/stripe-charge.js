@@ -54,7 +54,7 @@ exports.handler = function (event, context, callback) {
       stripe.subscriptions
         .create({
           customer: customer.id,
-          items: [{ plan: "prod_BTa6sTqViBNlXZ" }],
+          items: [{ plan: "pro_yearly" }],
           expand: ["latest_invoice.payment_intent"],
         })
 
