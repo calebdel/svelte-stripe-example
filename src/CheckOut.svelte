@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
 
-  var stripe = Stripe("pk_live_m4VIY9Wed7VnX69kkQBdYPQW");
+  var stripe = Stripe("pk_test_oX8cDmLuIPcZZGIN8lp05BSX");
   var elements = stripe.elements();
 
   var style = {
