@@ -88,8 +88,8 @@
       body: JSON.stringify({
         email: "jenny.rosen@example.com",
         payment_method: payMethod.paymentMethod.id,
-        referral: rwdful.affiliate,
-        coupon: rwdful.coupon
+        referral: Rewardful.affiliate,
+        coupon: Rewardful.coupon
       })
     }).then(function(response) {
       if (!response.ok) {
@@ -145,7 +145,7 @@
   <script
     data-rewardful="2ad021"
     src="https://r.wdfl.co/rw.js"
-    on:load={rewardfulLoaded}>
+    on:load={console.log('looooooaded')}>
 
   </script>
 </svelte:head>
