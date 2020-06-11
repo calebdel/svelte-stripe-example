@@ -20,8 +20,7 @@ exports.handler = function (event, context, callback) {
 
   //-- Parse the body contents into an object.
   const data = JSON.parse(event.body);
-  const ref = JSON.parse(data.ref);
-  debugger;
+
   //-- Make sure we have all required data. Otherwise, escape.
   if (!data.email || !data.payment_method) {
     console.error("Required information is missing.");
