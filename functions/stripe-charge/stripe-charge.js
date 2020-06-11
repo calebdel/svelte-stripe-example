@@ -52,7 +52,7 @@ exports.handler = function (event, context, callback) {
       },
       coupon: data.coupon.id,
       metadata: {
-        referral: data.referral.id,
+        referral: data.referral,
       },
     })
 
