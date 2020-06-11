@@ -38,6 +38,9 @@ exports.handler = function (event, context, callback) {
   //-- Should also check if customer already exists here
   // Just to test we create a new customer each time
 
+  console.log("referrrrral", data.referral);
+  console.log("couppooon", data.coupon);
+
   stripe.customers
     .create({
       payment_method: data.payment_method,
@@ -47,7 +50,7 @@ exports.handler = function (event, context, callback) {
       },
       coupon: data.coupon,
       metadata: {
-        referral: data.referral.toString(),
+        referral: data.referral,
       },
     })
 
