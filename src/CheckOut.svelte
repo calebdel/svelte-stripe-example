@@ -91,7 +91,7 @@
       body: JSON.stringify({
         email: "jenny.rosen@example.com",
         payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.referral,
+        referral: Rewardful.referral.toString(),
         coupon: Rewardful.coupon
       })
     }).then(function(response) {
