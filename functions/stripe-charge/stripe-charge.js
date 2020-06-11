@@ -41,6 +41,10 @@ exports.handler = function (event, context, callback) {
   console.log("referrrrral", data.referral);
   console.log("couppooon", data.coupon);
 
+  // stripe.coupons.retrieve("25_5OFF", function (err, coupon) {
+  //   // asynchronously called
+  // });
+
   stripe.customers
     .create({
       payment_method: data.payment_method,
@@ -48,7 +52,7 @@ exports.handler = function (event, context, callback) {
       invoice_settings: {
         default_payment_method: data.payment_method,
       },
-      coupon: JSON.stringify(data.coupon),
+      coupon: JSON.stringify(data.coupon.id),
       metadata: {
         referral: JSON.stringify(data.referral),
       },
