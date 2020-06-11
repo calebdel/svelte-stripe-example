@@ -25,31 +25,13 @@
   let rewardfulReady = false;
   let mounted = false;
 
-  // function stripeLoaded() {
-  //     // The external Stripe javascript is ready.
-  //     rewardfulReady = true;
-  //     if (mounted) {
-  //         loadStripeElements();
-  //     }
-  // }
+  const affiliateName = Rewardful.affiliate.first_name;
+  const discount = Rewardful.coupon.percent_off;
 
   function loadRewardful() {
     // Time for Stripe.js to do its magic.
-    const rwdful = Rewardful;
-    console.log(rwdful);
     // etc..
   }
-
-  // const initializeRewardful = () => {
-  //   window.addEventListener("Rewardful.tracked", () => {
-  //     console.log("Rewardful has finished loading");
-  //     console.log("rewardful", Rewardful);
-  //     console.log(Rewardful.referral);
-  //     console.log(Rewardful.coupon);
-
-  //     // `Rewardful.referral` and `Rewardful.affiliate` are now available.
-  //   });
-  // };
 
   function rewardfulLoaded() {
     // The external Stripe javascript is ready.
@@ -80,33 +62,6 @@
 
     console.log("referral", Rewardful.referral);
     console.log("coupon", Rewardful.coupon);
-
-    console.log(
-      JSON.stringify({
-        email: "jenny.rosen@example.com",
-        payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.referral.toString(),
-        coupon: Rewardful.coupon
-      })
-    );
-
-    console.log(
-      JSON.stringify({
-        email: "jenny.rosen@example.com",
-        payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.referral,
-        coupon: Rewardful.coupon
-      })
-    );
-
-    console.log(
-      JSON.stringify({
-        email: "jenny.rosen@example.com",
-        payment_method: payMethod.paymentMethod.id,
-        referral: Rewardful.affiliate,
-        coupon: Rewardful.coupon
-      })
-    );
 
     const response = await fetch("/.netlify/functions/stripe-charge", {
       method: "POST",
@@ -175,10 +130,13 @@
   <script
     data-rewardful="2ad021"
     src="https://r.wdfl.co/rw.js"
-    on:load={console.log('looooooaded')}>
+    on:load={console.log('loaded Rewardful')}>
 
   </script>
 </svelte:head>
+
+<h5>{affiliateName} subcribers get {discount}% off Mealime subscriptions</h5>
+
 <div id="card-element" class="MyCardElement">
   <!-- Elements will create input elements here -->
 </div>
@@ -186,4 +144,4 @@
 <!-- We'll put the error messages in this element -->
 <div id="card-errors" role="alert" />
 
-<button on:click={createPayment} id="submit">Pay</button>
+<button on:click={createPayment} id="submit">Subscribe</button>

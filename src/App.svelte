@@ -1,6 +1,4 @@
 <script>
-  export let name;
-
   import CheckOut from "./CheckOut.svelte";
 </script>
 
@@ -28,6 +26,6 @@
 </style>
 
 <main>
-  <h1>Subscribe to Mealime!!</h1>
+  <h1>Subscribe to Mealime</h1>
   <CheckOut />
 </main>
