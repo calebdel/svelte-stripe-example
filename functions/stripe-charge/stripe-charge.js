@@ -54,7 +54,7 @@ exports.handler = function (event, context, callback) {
       },
       coupon: data.coupon.id,
       metadata: {
-        referral: JSON.stringify(data.referral),
+        referral: JSON.parse(data.referral),
       },
     })
 
