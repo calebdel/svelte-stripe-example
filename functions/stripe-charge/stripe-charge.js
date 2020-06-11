@@ -41,6 +41,7 @@ exports.handler = function (event, context, callback) {
   console.log("referrrrral", data.referral);
   console.log("couppooon", data.coupon);
 
+  debugger;
   // stripe.coupons.retrieve("25_5OFF", function (err, coupon) {
   //   // asynchronously called
   // });
@@ -54,7 +55,7 @@ exports.handler = function (event, context, callback) {
       },
       coupon: data.coupon.id,
       metadata: {
-        referral: JSON.parse(data.referral),
+        referral: data.referral,
       },
     })
 
