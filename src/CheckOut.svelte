@@ -71,7 +71,7 @@
         "Access-Control-Allow-Credentials": true
       },
       body: JSON.stringify({
-        email: "jenny.rosen@example.com",
+        email: "mealime@example.com",
         payment_method: payMethod.paymentMethod.id,
         referral: Rewardful.referral.toString(),
         coupon: Rewardful.coupon
