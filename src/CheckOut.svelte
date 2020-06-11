@@ -81,6 +81,33 @@
     console.log("referral", Rewardful.referral);
     console.log("coupon", Rewardful.coupon);
 
+    console.log(
+      JSON.stringify({
+        email: "jenny.rosen@example.com",
+        payment_method: payMethod.paymentMethod.id,
+        referral: Rewardful.referral.toString(),
+        coupon: Rewardful.coupon
+      })
+    );
+
+    console.log(
+      JSON.stringify({
+        email: "jenny.rosen@example.com",
+        payment_method: payMethod.paymentMethod.id,
+        referral: Rewardful.referral,
+        coupon: Rewardful.coupon
+      })
+    );
+
+    console.log(
+      JSON.stringify({
+        email: "jenny.rosen@example.com",
+        payment_method: payMethod.paymentMethod.id,
+        referral: Rewardful.affiliate,
+        coupon: Rewardful.coupon
+      })
+    );
+
     const response = await fetch("/.netlify/functions/stripe-charge", {
       method: "POST",
       headers: {
