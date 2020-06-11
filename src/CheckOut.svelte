@@ -135,7 +135,10 @@
   </script>
 </svelte:head>
 
-<h5>{affiliateName} subcribers get {discount}% off Mealime subscriptions</h5>
+<h5>
+  {affiliateName}'s subscribers get a {discount}% off on their Mealime
+  subscriptions
+</h5>
 
 <div id="card-element" class="MyCardElement">
   <!-- Elements will create input elements here -->
