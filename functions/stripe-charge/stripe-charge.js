@@ -52,7 +52,7 @@ exports.handler = function (event, context, callback) {
       invoice_settings: {
         default_payment_method: data.payment_method,
       },
-      coupon: JSON.stringify(data.coupon.id),
+      coupon: data.coupon.id,
       metadata: {
         referral: JSON.stringify(data.referral),
       },
